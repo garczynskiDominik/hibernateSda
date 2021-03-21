@@ -19,5 +19,5 @@ public interface RunMemberDao {
 
     List<RunMember> findByNameFragment(String fragment) throws SQLException;
 
-    List<RunMember> findByMembersLimitRange(int min, int max) throws SQLException;
+    List<RunMember> findByStartNumberRange(int min, int max) throws SQLException;
 }

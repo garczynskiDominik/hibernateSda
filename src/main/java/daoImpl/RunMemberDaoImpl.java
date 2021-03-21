@@ -2,10 +2,10 @@ package daoImpl;
 
 import dao.RunMemberDao;
 import dataBaseSessionFactory.HibernateUtils;
-import entity.Run;
 import entity.RunMember;
 import org.hibernate.Session;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.lang.reflect.Member;
 import java.sql.SQLException;
@@ -52,16 +52,20 @@ public class RunMemberDaoImpl implements RunMemberDao {
                 .openSession();
         session.beginTransaction();
 
-        RunMember members = (RunMember) session
-                .createQuery("from Run where id= :id")
-                .setParameter("id", id)
-                .getSingleResult();
-
+        RunMember member = null;
+        try {
+            member = (RunMember) session
+                    .createQuery("from Run where id= :id")
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+        }
         session.getTransaction().commit();
         session.close();
-
-        return members;
-
+        if (member == null) {
+            System.out.println("nie ma takiego biegu");
+        }
+        return member;
     }
 
     @Override
@@ -111,9 +115,9 @@ public class RunMemberDaoImpl implements RunMemberDao {
                 .openSession();
         session.beginTransaction();
 
-        List<RunMember> members =  session
-                .createQuery("from RunMembers where name LIKE :fragment")
-                .setParameter("fragment", "%"+fragment+"%")
+        List<RunMember> members = session
+                .createQuery("from RunMember where name LIKE :fragment")
+                .setParameter("fragment", "%" + fragment + "%")
                 .getResultList();
 
         session.getTransaction().commit();
@@ -123,15 +127,15 @@ public class RunMemberDaoImpl implements RunMemberDao {
     }
 
     @Override
-    public List<RunMember> findByMembersLimitRange(int min, int max) throws SQLException {
+    public List<RunMember> findByStartNumberRange(int min, int max) throws SQLException {
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
                 .openSession();
         session.beginTransaction();
 
-        List<RunMember> members =  session
-                .createQuery("from Run where membersLimit BETWEEN :min AND :max")
+        List<RunMember> members = session
+                .createQuery("from RunMember where startNumber BETWEEN :min AND :max")
                 .setParameter("min", min)
                 .setParameter("max", max)
                 .getResultList();
