@@ -4,12 +4,14 @@ import dao.RunMemberDao;
 import dataBaseSessionFactory.HibernateUtils;
 import entity.RunMember;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.lang.reflect.Member;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class RunMemberDaoImpl implements RunMemberDao {
     @Override
@@ -46,26 +48,23 @@ public class RunMemberDaoImpl implements RunMemberDao {
 
     @Override
     public RunMember findById(Long id) throws SQLException {
+
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
-                .openSession();
+                .getCurrentSession();
+
         session.beginTransaction();
 
-        RunMember member = null;
-        try {
-            member = (RunMember) session
-                    .createQuery("from Run where id= :id")
+        Optional<RunMember> member=  session
+                    .createQuery("from RunMember where id= :id")
                     .setParameter("id", id)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-        }
+                    .uniqueResultOptional();
+
         session.getTransaction().commit();
         session.close();
-        if (member == null) {
-            System.out.println("nie ma takiego biegu");
-        }
-        return member;
+
+        return member.orElse(null);
     }
 
     @Override

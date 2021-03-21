@@ -60,8 +60,8 @@ class RunMemberDaoImplTest {
     void findAll() {
         try {
 
-            RunMember runMember1 = new RunMember(1L, "Dominik", 99, 5);
-            RunMember runMember2 = new RunMember(2L, "Tomek", 20, 10);
+            RunMember runMember1 = new RunMember(null, "Dominik", 99, 5);
+            RunMember runMember2 = new RunMember(null, "Tomek", 20, 10);
 
             runDao.save(runMember1);
             runDao.save(runMember2);
@@ -69,7 +69,7 @@ class RunMemberDaoImplTest {
             List<RunMember> runList = runDao.findAll();
             RunMember testRun1 = null;
             for (RunMember runMember : runList) {
-                if (runMember.getId() == runMember1.getId()) {
+                if (runMember.getId().equals(runMember1.getId())) {
                     testRun1 = runMember1;
                 }
             }

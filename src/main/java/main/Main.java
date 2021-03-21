@@ -14,21 +14,22 @@ public class Main {
         try {
 
             RunDaoImpl runDao = new RunDaoImpl();
+            RunMemberDaoImpl memberDao = new RunMemberDaoImpl();
 
 
-            runDao.save(new Run(1,"Dominik", 100,5));
-            runDao.save(new Run(2,"Tomek", 200,10));
-            runDao.save(new Run(3,"Krzysiek", 300,15));
+//            runDao.save(new Run(1,"Dominik", 100,5));
+//            runDao.save(new Run(2,"Tomek", 200,10));
+//            runDao.save(new Run(3,"Krzysiek", 300,15));
 
 
-//            RunMemberDaoImpl runMemberDao = new RunMemberDaoImpl();
-//            runMemberDao.save(new RunMember(1L, "Dominik", 12, 2));
-//            runMemberDao.save(new RunMember(2L, "Tomek", 13, 20));
-//            runMemberDao.save(new RunMember(3L, "Krzysiek", 15, 200));
+//
+//            memberDao.save(new RunMember(1L, "Dominik", 12, 2));
+//            memberDao.save(new RunMember(2L, "Tomek", 13, 20));
+//            memberDao.save(new RunMember(3L, "Krzysiek", 15, 200));
 
 
-//            List<Run> list = runDao.findAll();
-//            list.forEach(System.out::println);
+            List<RunMember> list = memberDao.findAll();
+            list.forEach(System.out::println);
 
 //
 //            runDao.update(5L);

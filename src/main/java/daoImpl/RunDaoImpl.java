@@ -3,6 +3,7 @@ package daoImpl;
 import dao.RunDao;
 import dataBaseSessionFactory.HibernateUtils;
 import entity.Run;
+import entity.RunMember;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class RunDaoImpl implements RunDao {
     @Override
@@ -53,24 +55,19 @@ public class RunDaoImpl implements RunDao {
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
-                .openSession();
+                .getCurrentSession();
+
         session.beginTransaction();
 
-        Run run = null;
-        try {
-            run = (Run) session
-                    .createQuery("from Run where id= :id")
-                    .setParameter("id", id)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-        }
+        Optional<Run> run=  session
+                .createQuery("from Run where id= :id")
+                .setParameter("id", id)
+                .uniqueResultOptional();
+
         session.getTransaction().commit();
         session.close();
-        if (run == null) {
-            System.out.println("nie ma takiego biegu");
-        }
 
-        return run;
+        return run.orElse(null);
     }
 
     @Override
