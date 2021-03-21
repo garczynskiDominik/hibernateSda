@@ -24,8 +24,8 @@ public class Run {
         this.distance = distance;
     }
 
-    public Run(long id, String name, Integer membersLimit, Integer distance) {
-        this.id = id;
+    public Run(String name, Integer membersLimit, Integer distance) {
+
         this.name = name;
         this.membersLimit = membersLimit;
         this.distance = distance;

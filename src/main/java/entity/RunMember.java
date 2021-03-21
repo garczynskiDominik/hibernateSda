@@ -16,8 +16,7 @@ public class RunMember {
     private Integer runId;
 
 
-    public RunMember(Long id, String name, Integer startNumber, Integer runId) {
-        this.id = id;
+    public RunMember(String name, Integer startNumber, Integer runId) {
         this.name = name;
         this.startNumber = startNumber;
         this.runId = runId;

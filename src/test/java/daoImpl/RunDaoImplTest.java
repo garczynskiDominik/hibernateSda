@@ -35,7 +35,7 @@ class RunDaoImplTest {
 
     @Test
     void save() {
-        Run run = new Run(1L, "Testowy", 100, 5);
+        Run run = new Run("Testowy", 100, 5);
         try {
             runDao.save(run);
 
@@ -54,8 +54,8 @@ class RunDaoImplTest {
     @Test
     void findAll() {
         try {
-            Run run1 = new Run(100, "Testowy", 99, 5);
-            Run run2 = new Run(105, "Testowy", 20, 10);
+            Run run1 = new Run("Testowy", 99, 5);
+            Run run2 = new Run("Testowy", 20, 10);
 
             runDao.save(run1);
             runDao.save(run2);
@@ -80,13 +80,13 @@ class RunDaoImplTest {
     @Test
     void update() {
 
-        Run run = new Run(1, "Testowy", 50, 15);
+        Run run = new Run("Testowy", 50, 15);
         try {
             runDao.save(run);
             run.setMembersLimit(20);
             run.setName("Inna nazwa");
             runDao.save(run);
-//            runDao.update(run.getId());
+//           runDao.update(run.getId());
 
             Run update = runDao.findById(run.getId());
             assertNotNull(update);
@@ -100,7 +100,7 @@ class RunDaoImplTest {
 
     @Test
     void deleteById() {
-        Run run = new Run(1, "Testowy", 100, 5);
+        Run run = new Run("Testowy", 100, 5);
         try {
             runDao.save(run);
             runDao.deleteById(run.getId());
@@ -116,9 +116,9 @@ class RunDaoImplTest {
     @Test
     void findByNameFragment() {
 
-        Run run1 = new Run(1, "Tomek", 50, 5);
-        Run run2 = new Run(2, "Marek", 40, 10);
-        Run run3 = new Run(3, "Roman", 30, 15);
+        Run run1 = new Run("Tomek", 50, 5);
+        Run run2 = new Run("Marek", 40, 10);
+        Run run3 = new Run("Roman", 30, 15);
         try {
             runDao.save(run1);
             runDao.save(run2);
@@ -147,9 +147,9 @@ class RunDaoImplTest {
     void findByMembersLimitRange() {
 
         try {
-            Run run1 = new Run(1, "Tomek", 50, 5);
-            Run run2 = new Run(2, "Marek", 100, 10);
-            Run run3 = new Run(3, "Roman", 150, 15);
+            Run run1 = new Run("Tomek", 50, 5);
+            Run run2 = new Run("Marek", 100, 10);
+            Run run3 = new Run("Roman", 150, 15);
             runDao.save(run1);
             runDao.save(run2);
             runDao.save(run3);

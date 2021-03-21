@@ -22,7 +22,7 @@ public class RunMemberDaoImpl implements RunMemberDao {
                 .openSession();
 
         session.beginTransaction();
-        session.save(member);
+        session.saveOrUpdate(member);
         session.getTransaction().commit();
         session.close();
     }

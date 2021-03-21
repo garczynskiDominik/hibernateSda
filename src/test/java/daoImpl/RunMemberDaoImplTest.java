@@ -39,7 +39,7 @@ class RunMemberDaoImplTest {
     @Test
     void save() {
 
-        RunMember runMember = new RunMember(1L, "Dominik", 1, 1);
+        RunMember runMember = new RunMember("Dominik", 1, 1);
         try {
             runDao.save(runMember);
 
@@ -60,8 +60,8 @@ class RunMemberDaoImplTest {
     void findAll() {
         try {
 
-            RunMember runMember1 = new RunMember(null, "Dominik", 99, 5);
-            RunMember runMember2 = new RunMember(null, "Tomek", 20, 10);
+            RunMember runMember1 = new RunMember("Dominik", 99, 5);
+            RunMember runMember2 = new RunMember("Tomek", 20, 10);
 
             runDao.save(runMember1);
             runDao.save(runMember2);
@@ -86,7 +86,7 @@ class RunMemberDaoImplTest {
     @Test
     void update() {
 
-        RunMember runMember = new RunMember(2L, "Tomek", 20, 10);
+        RunMember runMember = new RunMember("Tomek", 20, 10);
         try {
             runDao.save(runMember);
             runMember.setStartNumber(50);
@@ -107,7 +107,7 @@ class RunMemberDaoImplTest {
     @Test
     void deleteById() {
 
-        RunMember runMember = new RunMember(2L, "Tomek", 20, 10);
+        RunMember runMember = new RunMember("Tomek", 20, 10);
         try {
             runDao.save(runMember);
             runDao.deleteById(runMember.getId());
@@ -123,9 +123,9 @@ class RunMemberDaoImplTest {
     @Test
     void findByNameFragment() {
 
-        RunMember runMember1 = new RunMember(1L, "Dominik", 50, 5);
-        RunMember runMember2 = new RunMember(2L, "Marek", 40, 10);
-        RunMember runMember3 = new RunMember(2L, "Tomek", 30, 15);
+        RunMember runMember1 = new RunMember("Dominik", 50, 5);
+        RunMember runMember2 = new RunMember("Marek", 40, 10);
+        RunMember runMember3 = new RunMember("Tomek", 30, 15);
         try {
             runDao.save(runMember1);
             runDao.save(runMember2);
@@ -155,9 +155,9 @@ class RunMemberDaoImplTest {
 
         try {
 
-            RunMember runMember1 = new RunMember(1L, "Dominik", 50, 5);
-            RunMember runMember2 = new RunMember(2L, "Marek", 100, 10);
-            RunMember runMember3 = new RunMember(2L, "Tomek", 150, 15);
+            RunMember runMember1 = new RunMember("Dominik", 50, 5);
+            RunMember runMember2 = new RunMember("Marek", 100, 10);
+            RunMember runMember3 = new RunMember("Tomek", 150, 15);
             runDao.save(runMember1);
             runDao.save(runMember2);
             runDao.save(runMember3);

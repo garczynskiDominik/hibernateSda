@@ -24,10 +24,9 @@ public class RunDaoImpl implements RunDao {
 
 
         session.beginTransaction();
-        session.save(run);
+        session.saveOrUpdate(run);
         session.getTransaction().commit();
         session.close();
-//        HibernateUtils.getInstance().getSessionFactory().close();
     }
 
     @Override
@@ -59,7 +58,7 @@ public class RunDaoImpl implements RunDao {
 
         session.beginTransaction();
 
-        Optional<Run> run=  session
+        Optional<Run> run = session
                 .createQuery("from Run where id= :id")
                 .setParameter("id", id)
                 .uniqueResultOptional();
