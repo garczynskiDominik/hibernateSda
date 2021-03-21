@@ -154,10 +154,6 @@ class RunMemberDaoImplTest {
     void findByMembersLimitRange() {
 
         try {
-            Run run1 = new Run(1, "Tomek", 50, 5);
-            Run run2 = new Run(2, "Marek", 100, 10);
-            Run run3 = new Run(3, "Roman", 150, 15);
-
 
             RunMember runMember1 = new RunMember(1L, "Dominik", 50, 5);
             RunMember runMember2 = new RunMember(2L, "Marek", 100, 10);
