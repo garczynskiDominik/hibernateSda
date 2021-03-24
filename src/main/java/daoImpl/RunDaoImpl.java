@@ -147,4 +147,20 @@ public class RunDaoImpl implements RunDao {
 
         return runs;
     }
+
+    public static List join() {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .getCurrentSession();
+
+        session.beginTransaction();
+        String select = "FROM entity.Run r INNER JOIN Run_Member rm ON r.id_run=rm.run_id";
+        Query query = session.createQuery(select);
+        List elist = query.getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+        return elist;
+    }
 }

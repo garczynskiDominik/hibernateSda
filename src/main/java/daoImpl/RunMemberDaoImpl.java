@@ -19,7 +19,7 @@ public class RunMemberDaoImpl implements RunMemberDao {
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
-                .openSession();
+                .getCurrentSession();
 
         session.beginTransaction();
         session.saveOrUpdate(member);

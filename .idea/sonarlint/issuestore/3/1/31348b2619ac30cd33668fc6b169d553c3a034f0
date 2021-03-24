@@ -1,0 +1,14 @@
+
+Q
+java:S1128"4Remove this unused import 'org.hibernate.Hibernate'.(óñ‹è8´¨™¡…/
+C
+java:S1481T"&Remove this unused "a" local variable.(û×Â£8ñ€¥…/
+O
+java:S1128"-Remove this unused import 'entity.RunMember'.(øş€ÿÿÿÿÿ8é½¸©…/
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Â¼‚¢…/
+R
+java:S1854T"5Remove this useless assignment to local variable "a".(û×Â£8ñ€¥…/
+]
+java:S1128
+"@Remove this unused import 'javax.persistence.NoResultException'.(ŒºíĞ8»…¸©…/
