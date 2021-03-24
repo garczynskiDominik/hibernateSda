@@ -7,19 +7,24 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Table(name = "RUN_MEMBER")
 public class RunMember {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_runmember")
     private Long id;
     private String name;
-//    @Column(name = "START_NUMBER")
+    @Column(name = "start_member")
     private Integer startNumber;
-//    @Column(name = "RUN_ID")
+    @Column(name = "run_id",nullable = false)
     private Integer runId;
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "run_id",insertable=false, updatable=false)
+    private Run run;
 
 
-    public RunMember(String name, Integer startNumber, Integer runId) {
+    public RunMember(String name, Integer runId, Integer startNumber) {
         this.name = name;
-        this.startNumber = startNumber;
         this.runId = runId;
+        this.startNumber = startNumber;
+
     }
 
     public RunMember() {

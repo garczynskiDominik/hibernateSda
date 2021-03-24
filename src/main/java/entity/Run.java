@@ -2,17 +2,29 @@ package entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "RUN")
+//@Table(name = "RUN")
 public class Run {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_run")
     private Long id;
     private String name;
-//    @Column(name = "MEMBERS_LIMIT")
+    @Column(name = "MEMBERS_LIMIT")
     private Integer membersLimit;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "run")
+    private List<RunMember> runMembers = new ArrayList<RunMember>();
 
+    public List<RunMember> getRunMembers() {
+        return runMembers;
+    }
+
+    public void setRunMembers(List<RunMember> runMembers) {
+        this.runMembers = runMembers;
+    }
 
     private Integer distance;
 
