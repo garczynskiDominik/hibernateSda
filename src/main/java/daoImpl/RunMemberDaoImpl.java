@@ -68,16 +68,16 @@ public class RunMemberDaoImpl implements RunMemberDao {
     }
 
     @Override
-    public void update(Long id) throws SQLException {
+    public void update(Long idMember, Long runId) throws SQLException {
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
                 .openSession();
         session.beginTransaction();
 
-        Query q = session.createQuery("update RunMember set name=:newName where id= :id")
-                .setParameter("newName", "Dominik")
-                .setParameter("id", id);
+        Query q = session.createQuery("update RunMember set run_id = idRun where id= :id")
+                .setParameter("run_id", runId )
+                .setParameter("id", idMember);
 
         int a = q.executeUpdate();
 
@@ -145,4 +145,45 @@ public class RunMemberDaoImpl implements RunMemberDao {
         return members;
 
     }
+
+    @Override
+    public List<RunMember> findAllByRunId(Long id) throws SQLException {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .openSession();
+        session.beginTransaction();
+
+        List<RunMember> members = session
+                .createQuery("from RunMember where run.id=:id")
+                .setParameter("id", id)
+                .getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        return members;
+
+    }
+
+    @Override
+    public List<RunMember> findByStartNumber(int startNumber, Long runId) throws SQLException {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .openSession();
+        session.beginTransaction();
+
+        List<RunMember> members = session
+                .createQuery("from RunMember where startNumber=:startNumber and run.id=:runId")
+                .setParameter("startNumber", startNumber)
+                .setParameter("runId", runId)
+                .getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return members;
+
+    }
+
 }

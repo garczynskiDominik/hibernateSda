@@ -13,11 +13,17 @@ public interface RunMemberDao {
 
     RunMember findById(Long id) throws SQLException; //R
 
-    void update(Long id) throws SQLException; //U
+    void update(Long idMember, Long idRun) throws SQLException; //U
 
     void deleteById(Long id) throws SQLException; //D
 
     List<RunMember> findByNameFragment(String fragment) throws SQLException;
 
     List<RunMember> findByStartNumberRange(int min, int max) throws SQLException;
+
+    List<RunMember> findAllByRunId(Long id) throws SQLException;
+
+    List<RunMember> findByStartNumber(int startNumber, Long runId) throws SQLException;
+
+
 }

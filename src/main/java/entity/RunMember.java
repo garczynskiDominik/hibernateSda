@@ -17,7 +17,7 @@ public class RunMember {
     private Integer startNumber;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "run_id")
     private Run run;
 
