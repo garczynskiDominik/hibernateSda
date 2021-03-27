@@ -2,6 +2,8 @@ package entity;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "RUN_MEMBER")
@@ -16,8 +18,19 @@ public class RunMember {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "run_id", insertable = false, updatable = false)
+    @JoinColumn(name = "run_id")
     private Run run;
+
+    @ManyToMany(mappedBy = "members")
+    private Set<NfcTag> tags = new HashSet<>();
+
+    public Set<NfcTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<NfcTag> tags) {
+        this.tags = tags;
+    }
 
     public Run getRun() {
         return run;
