@@ -5,16 +5,15 @@ import javax.persistence.*;
 @Entity
 public class NfcTag {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "serial_number")
-    private int serialNumber;
-    @Column(name = "run_member")
-    private Long runMember;
+    private String serialNumber;
 
-    public NfcTag(int serialNumber, Long runMember) {
+
+    public NfcTag( String serialNumber) {
+
         this.serialNumber = serialNumber;
-        this.runMember = runMember;
     }
 
     public NfcTag() {
@@ -28,19 +27,13 @@ public class NfcTag {
         this.id = id;
     }
 
-    public int getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
-    public Long getRunMember() {
-        return runMember;
-    }
 
-    public void setRunMember(Long runMember) {
-        this.runMember = runMember;
-    }
 }

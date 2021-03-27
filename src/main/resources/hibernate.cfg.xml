@@ -18,6 +18,7 @@
 
         <mapping class="entity.Run"/>
         <mapping class="entity.RunMember"/>
+        <mapping class="entity.NfcTag"/>
 
 
     </session-factory>
