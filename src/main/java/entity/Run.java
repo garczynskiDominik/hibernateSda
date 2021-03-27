@@ -3,26 +3,30 @@ package entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 //@Table(name = "RUN")
 public class Run {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_run")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id_run")
     private Long id;
     private String name;
     @Column(name = "MEMBERS_LIMIT")
     private Integer membersLimit;
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "run")
-    private List<RunMember> runMembers = new ArrayList<RunMember>();
 
-    public List<RunMember> getRunMembers() {
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "run")
+    private Set<RunMember> runMembers = new HashSet<>();
+
+    public Set<RunMember> getRunMembers() {
         return runMembers;
     }
 
-    public void setRunMembers(List<RunMember> runMembers) {
+    public void setRunMembers(Set<RunMember> runMembers) {
         this.runMembers = runMembers;
     }
 

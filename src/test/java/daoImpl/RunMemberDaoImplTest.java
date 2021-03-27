@@ -49,7 +49,6 @@ class RunMemberDaoImplTest {
             assertEquals(runMember.getId(), saved.getId());
             assertEquals(runMember.getName(), saved.getName());
             assertEquals(runMember.getStartNumber(), saved.getStartNumber());
-            assertEquals(runMember.getRunId(), saved.getRunId());
         } catch (SQLException throwables) {
             fail(throwables);
             throwables.printStackTrace();
@@ -140,7 +139,7 @@ class RunMemberDaoImplTest {
             assertEquals(runMember1.getId(), result.get(0).getId());
             assertEquals(runMember1.getName(), result.get(0).getName());
             assertEquals(runMember1.getStartNumber(), result.get(0).getStartNumber());
-            assertEquals(runMember1.getRunId(), result.get(0).getRunId());
+
             assertEquals(1, result1.size());
             assertEquals(0, result2.size());
 
@@ -173,7 +172,7 @@ class RunMemberDaoImplTest {
             assertEquals(runMember2.getId(), result2.get(0).getId());
             assertEquals(runMember2.getName(), result2.get(0).getName());
             assertEquals(runMember2.getStartNumber(), result2.get(0).getStartNumber());
-            assertEquals(runMember2.getRunId(), result2.get(0).getRunId());
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

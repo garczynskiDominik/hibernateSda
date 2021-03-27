@@ -57,7 +57,7 @@ public class RunMemberDaoImpl implements RunMemberDao {
         session.beginTransaction();
 
         Optional<RunMember> member=  session
-                    .createQuery("from RunMember where id= :id")
+                    .createQuery("from RunMember where id= :id", RunMember.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
 

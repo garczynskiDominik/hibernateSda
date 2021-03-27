@@ -7,22 +7,28 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Table(name = "RUN_MEMBER")
 public class RunMember {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_runmember")
     private Long id;
     private String name;
     @Column(name = "start_member")
     private Integer startNumber;
-    @Column(name = "run_id",nullable = false)
-    private Integer runId;
-    @ManyToOne(fetch = FetchType.EAGER,optional = false)
-    @JoinColumn(name = "run_id",insertable=false, updatable=false)
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "run_id", insertable = false, updatable = false)
     private Run run;
 
+    public Run getRun() {
+        return run;
+    }
+
+    public void setRun(Run run) {
+        this.run = run;
+    }
 
     public RunMember(String name, Integer runId, Integer startNumber) {
         this.name = name;
-        this.runId = runId;
         this.startNumber = startNumber;
 
     }
@@ -54,13 +60,6 @@ public class RunMember {
         this.startNumber = startNumber;
     }
 
-    public Integer getRunId() {
-        return runId;
-    }
-
-    public void setRunId(Integer runId) {
-        this.runId = runId;
-    }
 
     @Override
     public String toString() {
@@ -68,7 +67,7 @@ public class RunMember {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", startNumber=" + startNumber +
-                ", runId=" + runId +
+
                 '}';
     }
 }
