@@ -1,8 +1,11 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "NFC_TAG")
 public class NfcTag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -10,8 +13,25 @@ public class NfcTag {
     @Column(name = "serial_number")
     private String serialNumber;
 
+    @ManyToMany
+    @JoinTable(
+            name = "NFC_TAG_RUN_MEMBER",
+            joinColumns = {@JoinColumn(name = "id_nfc_tag")},
+            inverseJoinColumns = {@JoinColumn(name = "id_run_member")}
+    )
+    private Set<RunMember> members = new HashSet<>();
 
-    public NfcTag( String serialNumber) {
+
+    public Set<RunMember> getMembers() {
+        return members;
+    }
+
+    public void setMembers(Set<RunMember> members) {
+        this.members = members;
+    }
+
+
+    public NfcTag(String serialNumber) {
 
         this.serialNumber = serialNumber;
     }

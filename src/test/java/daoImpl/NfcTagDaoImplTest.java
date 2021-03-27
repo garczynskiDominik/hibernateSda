@@ -45,6 +45,7 @@ class NfcTagDaoImplTest {
             assertEquals(nfcTag.getId(), saved.getId());
             assertEquals(nfcTag.getSerialNumber(), saved.getSerialNumber());
             assertEquals(nfcTag.getId(), saved.getId());
+
         } catch (SQLException throwables) {
             fail(throwables);
             throwables.printStackTrace();
@@ -54,7 +55,6 @@ class NfcTagDaoImplTest {
     @Test
     void findAll() {
         try {
-
             NfcTag nfcTag1 = new NfcTag("123");
             NfcTag nfcTag2 = new NfcTag("456");
 
@@ -68,7 +68,6 @@ class NfcTagDaoImplTest {
                     test = nfcTag1;
                 }
             }
-
             assertNotNull(tags);
             assertEquals(2, tags.size());
             assertEquals(nfcTag1.getId(), test.getId());
