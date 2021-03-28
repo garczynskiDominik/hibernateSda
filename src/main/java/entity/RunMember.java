@@ -76,12 +76,10 @@ public class RunMember {
 
     @Override
     public String toString() {
-        return "RunMember{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", startNumber=" + startNumber +
-
-                '}';
+        return
+                "id: " + id +
+                        ", name: " + name +
+                        ", startNumber: " + startNumber;
     }
 }
 

@@ -19,7 +19,7 @@ public class Run {
     private Integer membersLimit;
 
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "run")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "run")
     private Set<RunMember> runMembers = new HashSet<>();
 
     public Set<RunMember> getRunMembers() {
@@ -76,11 +76,10 @@ public class Run {
 
     @Override
     public String toString() {
-        return "Run{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", membersLimit=" + membersLimit +
-                ", distance=" + distance +
-                '}';
+        return
+                "id: " + id +
+                        ", name: " + name +
+                        ", members limit: " + membersLimit +
+                        ", distance: " + distance;
     }
 }

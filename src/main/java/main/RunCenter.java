@@ -56,8 +56,12 @@ public class RunCenter {
 
     private static void deleteMember() throws SQLException {
         Scanner scanner = new Scanner(System.in);
+        RunMemberDao runMemberDao = new RunMemberDaoImpl();
         log("Podaj id uczestnika");
-        new RunMemberDaoImpl().deleteById(scanner.nextLong());
+        RunMember runMember = runMemberDao.findById(scanner.nextLong());
+        if (runMember != null) {
+            runMemberDao.deleteById(runMember.getId());
+        }
     }
 
     private static void findMemberByStartNumber() throws SQLException {
@@ -77,7 +81,6 @@ public class RunCenter {
         members.forEach(System.out::println);
     }
 
-
     private static void handleAddNewMemberToRun() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         log("Podaj id biegu");
@@ -93,14 +96,20 @@ public class RunCenter {
 
     }
 
-
     private static void deleteRun() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         RunDao runDao = new RunDaoImpl();
-
+        RunMemberDao runMemberDao = new RunMemberDaoImpl();
         log("Podaj id biegu do skasowania");
         Long id = scanner.nextLong();
-        runDao.deleteById(id);
+        Run run = runDao.findById(id);
+        if (run != null) {
+            runDao.deleteById(id);
+        } else {
+            log("Nie ma takiego biegu");
+        }
+
+
     }
 
     private static void handleShowAllRun() throws SQLException {
@@ -108,7 +117,6 @@ public class RunCenter {
         List<Run> list = runDao.findAll();
         log("Lista biegów");
 
-        log("-----------------------------------------");
         list.forEach(System.out::println);
 
     }
@@ -116,13 +124,14 @@ public class RunCenter {
     private static void handleAddNewRun() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         RunDao runDao = new RunDaoImpl();
+
+        Run run = new Run();
         log("Podaj nazwe biegu.");
-        String name = scanner.nextLine();
+        run.setName(scanner.nextLine());
         log("Podaj limit osob");
-        int limit = scanner.nextInt();
+        run.setMembersLimit(scanner.nextInt());
         log("Podaj dystans");
-        int distance = scanner.nextInt();
-        Run run = new Run(name, limit, distance);
+        run.setDistance(scanner.nextInt());
         runDao.save(run);
     }
 
